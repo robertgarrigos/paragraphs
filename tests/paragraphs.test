@@ -13,22 +13,6 @@ class ParagraphsWebTestCase extends BackdropWebTestCase {
   protected $privilegedUser;
 
   /**
-   * Give display information to the SimpleTest system.
-   *
-   * getInfo() returns a keyed array of information for SimpleTest to show.
-   *
-   * It's a good idea to organize your tests consistently using the 'group'
-   * key.
-   */
-  public static function getInfo() {
-    return array(
-      'name' => 'Paragraphs test',
-      'description' => 'Ensure that the simpletest_example content type provided functions properly.',
-      'group' => 'Paragraphs',
-    );
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function setUp() {
