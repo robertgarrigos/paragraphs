@@ -80,15 +80,6 @@ function paragraphs_item_load_multiple(array $ids = array(), $conditions = array
 }
 
 /**
- * Implements hook_ctools_plugin_directory().
- */
-function paragraphs_ctools_plugin_directory($module, $plugin) {
-  if ($module == 'panelizer' && $plugin == 'entity') {
-    return 'plugins/panelizer/entity';
-  }
-}
-
-/**
  * Implements hook_entity_info().
  */
 function paragraphs_entity_info() {

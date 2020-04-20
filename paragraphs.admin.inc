@@ -367,9 +367,8 @@ function paragraphs_form_edit($form, &$form_state, $paragraphs_item) {
   $show_revision_options = FALSE;
   $use_revisions = FALSE;
   if ($host_entity_type == 'node') {
-    $show_revision_options = TRUE;
-    $host_settings = variable_get('node_options_' . $host_entity_bundle, array());
-    $use_revisions = in_array('revision', $host_settings, TRUE);
+    $show_revision_options = config_get('node.type.' . $host_entity_bundle, 'settings.revision_enabled');
+    $use_revisions = config_get('node.type.' . $host_entity_bundle, 'settings.revision_default');
   }
   if ($show_revision_options) {
     $form['additional_settings'] = array(
