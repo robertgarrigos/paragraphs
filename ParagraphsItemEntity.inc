@@ -288,15 +288,12 @@ class ParagraphsItemEntity extends Entity {
         $result = $query->execute();
         $this->hostEntityType = key($result);
         $data = current($result);
-
         if ($data) {
           $data_values = array_shift($data);
-          $host_entity_info = entity_get_info($this->hostEntityType);
-          $host_entity_keys = $host_entity_info['entity keys'];
 
-          $this->hostEntityId = (isset($data_values->{$host_entity_keys['id']}) ? $data_values->{$host_entity_keys['id']} : NULL);
-          $this->hostEntityRevisionId = (isset($data_values->{$host_entity_keys['revision']}) ? $data_values->{$host_entity_keys['revision']} : NULL);
-          $this->hostEntityBundle = (isset($data_values->{$host_entity_keys['bundle']}) ? $data_values->{$host_entity_keys['bundle']} : NULL);
+          $this->hostEntityId = (isset($data_values->entity_id) ? $data_values->entity_id : NULL);
+          $this->hostEntityRevisionId = (isset($data_values->revision_id) ? $data_values->revision_id : NULL);
+          $this->hostEntityBundle = (isset($data_values->bundle) ? $data_values->bundle : NULL);
           $this->hostEntity = entity_plus_revision_load($this->hostEntityType, $this->hostEntityRevisionId);
           $this->fetchedHostEntityDetails = TRUE;
         }
