@@ -415,7 +415,16 @@ class ParagraphsItemEntity extends Entity {
         $host_entity->{$this->field_name}[$this->langcode][$delta] = array('entity' => $this);
       }
       else {
-        $host_entity->{$this->field_name}[$this->langcode][] = array('entity' => $this);
+        $found = 0;
+        foreach ($host_entity->{$this->field_name}[$this->langcode] as $delta => $paragraph) {
+          if ($paragraph['value'] == $this->item_id) {
+            $host_entity->{$this->field_name}[$this->langcode][$delta] = array('entity' => $this);
+            $found = 1;
+          }
+        }
+        if (!$found) {
+          $host_entity->{$this->field_name}[$this->langcode][] = array('entity' => $this);
+        }
       }
       return entity_plus_save($this->hostEntityType, $host_entity);
     }
