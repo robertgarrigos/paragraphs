@@ -313,10 +313,6 @@ function paragraphs_permission() {
       'title' => t('Administer Paragraph types'),
       'description' => t('Is able to administer Paragraph types for the Paragraphs module'),
     ),
-    'edit individual paragraphs' => array(
-      'title' => t('Edit Paragraphs individually'),
-      'description' => t('Is able to edit individual Paragraphs separately (e.g. with contextual links)'),
-    ),
   );
   return $perms;
 }
@@ -1541,13 +1537,7 @@ function paragraphs_modules_uninstalled($modules) {
  * Access callback for separate form.
  */
 function paragraphs_separate_edit_access($paragraphs_item) {
-  // TODO: Get instance/entity access working. Right now this is collapsed
-  // into a permission and that is all that is checked. Original patch code
-  // is below.
-  return (user_access('edit individual paragraphs'));
-  
   /** @var ParagraphsItemEntity $paragraphs_item */
-  /*
   $paragraphs_item->hostEntity();
   $host_entity_type = $paragraphs_item->hostEntityType();
   $instance = $paragraphs_item->instanceInfo();
@@ -1555,7 +1545,6 @@ function paragraphs_separate_edit_access($paragraphs_item) {
   // Check separate forms are enabled and that the user has access to update
   // the host entity as well as the paragraph item itself.
   return !empty($instance['settings']['separate_edit']) && entity_access('update', $host_entity_type, $paragraphs_item->hostEntity()) && entity_access('update', 'paragraphs_item', $paragraphs_item);
-  */
 }
 
 /**
