@@ -394,7 +394,12 @@ class ParagraphsItemEntity extends Entity {
     else {
       $host_entity = $this->hostEntity();
       if (!$host_entity) {
-        throw new Exception("Unable to save a paragraph without a valid reference to a host entity.");
+        if (!empty($this->hostEntityType) && !empty($this->hostEntityId)) {
+          $host_entity = entity_load($this->hostEntityType, $this->hostEntityId);
+        }
+        if (!$host_entity) {
+          throw new Exception("Unable to save a paragraph without a valid reference to a host entity.");
+        }
       }
       // If this is creating a new revision, also do so for the host entity.
       if (!empty($this->revision) || !empty($this->is_new_revision)) {

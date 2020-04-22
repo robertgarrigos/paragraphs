@@ -10,5 +10,5 @@
 }
 
 .paragraphs-items .contextual-links-trigger {
-  background: transparent url(../images/paragraphs-gear-select.png) no-repeat 2px 0;
+  background: rgba(255,255,255,.8) url(../images/paragraphs-gear-select.png) no-repeat 2px 0;
 }
