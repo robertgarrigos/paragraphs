@@ -294,7 +294,14 @@ class ParagraphsItemEntity extends Entity {
           $this->hostEntityId = (isset($data_values->entity_id) ? $data_values->entity_id : NULL);
           $this->hostEntityRevisionId = (isset($data_values->revision_id) ? $data_values->revision_id : NULL);
           $this->hostEntityBundle = (isset($data_values->bundle) ? $data_values->bundle : NULL);
-          $this->hostEntity = entity_plus_revision_load($this->hostEntityType, $this->hostEntityRevisionId);
+          if ($this->hostEntityType == 'node') {
+            // Fetch current revision.
+            $this->hostEntity = entity_plus_revision_load($this->hostEntityType, $this->hostEntityRevisionId);
+          }
+          else {
+            // No revisions.
+            $this->hostEntity = entity_load($this->hostEntityType, $this->hostEntityId);
+          }
           $this->fetchedHostEntityDetails = TRUE;
         }
         else {
